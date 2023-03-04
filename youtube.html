@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="ytplayer"></div>
+</body>
+<script>
+    // 1. ytplayer code: https://developers.google.com/youtube/player_parameters#IFrame_Player_API
+var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '360',
+      width: '640',
+      videoId: 'M7lc1UVf-VE'
+    });
+  }
+// 2. get player.playerInfo.currentTime
+function startInterval() {
+   //checks every 100ms to see if the video has reached 6s
+   checkInt = setInterval(function() {
+    console.log(player.playerInfo.currentTime ); 
+    if (player.getCurrentTime() > 2300) {
+         clearInterval(checkInt);
+      };
+   }, 1000)
+}
+
+startInterval();
+
+window.onclick = () => {
+  console.log(player);
+  alert(player.playerInfo.currentTime);
+}
+</script>
+</html>
