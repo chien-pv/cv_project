@@ -8,5 +8,12 @@
 </head>
 <body>
     <h3>Hello EJS</h3>
+    
+    <ul>
+        <% users.forEach(function(user){ %>
+          <li><%= user.name %></li>
+        <% }); %>
+      </ul>
+
 </body>
 </html>
